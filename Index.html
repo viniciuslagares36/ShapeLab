@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- ============================================================
+     TÍTULO E DESCRIÇÃO DO SITE (mexa aqui para SEO)
+============================================================ -->
+<title>Apostilas de Treino | Transforme Seu Corpo</title>
+<meta name="description" content="Apostilas de treino prontas para você evoluir na academia. Treinos de hipertrofia, emagrecimento e força." />
+
+<!-- ============================================================
+     FONTES (Google Fonts) — troque se quiser outro estilo
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   VARIÁVEIS DE COR — mude as cores do site rapidamente aqui
+============================================================ */
+:root{
+  --bg: #0d0d0f;            /* fundo principal */
+  --bg-2: #16161a;          /* fundo secundário (cards) */
+  --texto: #f4f4f5;         /* cor do texto */
+  --texto-suave: #a1a1aa;   /* texto cinza */
+  --destaque: #f5ff3d;      /* cor de destaque (amarelo neon) */
+  --destaque-2: #ff4d2e;    /* cor secundária (laranja) */
+  --borda: #27272a;
+}
+
+/* Reset básico */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+/* Compensa a altura do header fixo ao rolar para uma âncora */
+section[id]{scroll-margin-top:90px}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--texto);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* Container central */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ============================================================
+   CABEÇALHO / NAVEGAÇÃO
+============================================================ */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(13,13,15,.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--borda);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.logo{
+  font-family:'Anton',sans-serif;
+  font-size:24px;letter-spacing:2px;
+  text-transform:uppercase;
+}
+.logo span{color:var(--destaque)}
+.nav ul{display:flex;gap:32px;list-style:none}
+.nav ul a{font-size:14px;color:var(--texto-suave);transition:color .2s}
+.nav ul a:hover{color:var(--destaque)}
+@media(max-width:720px){.nav ul{display:none}}
+
+/* ============================================================
+   HERO (Topo do site com chamada principal)
+============================================================ */
+.hero{
+  padding:80px 0 100px;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;
+  width:600px;height:600px;
+  background:radial-gradient(circle, var(--destaque) 0%, transparent 70%);
+  opacity:.15;top:-200px;right:-200px;border-radius:50%;
+  pointer-events:none;
+}
+.hero-tag{
+  display:inline-block;padding:6px 14px;
+  background:var(--bg-2);border:1px solid var(--borda);
+  border-radius:999px;font-size:12px;
+  color:var(--destaque);letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.hero h1{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(48px,8vw,96px);
+  line-height:1;letter-spacing:-1px;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+.hero h1 em{color:var(--destaque);font-style:normal}
+.hero p{
+  font-size:18px;color:var(--texto-suave);
+  max-width:600px;margin-bottom:36px;
+}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+
+/* ============================================================
+   BOTÕES — botão principal de compra reutilizável
+============================================================ */
+.btn{
+  display:inline-block;padding:16px 32px;
+  font-weight:700;font-size:15px;
+  border-radius:8px;border:none;cursor:pointer;
+  transition:transform .15s, box-shadow .2s;
+  text-transform:uppercase;letter-spacing:1px;
+}
+.btn-primary{
+  background:var(--destaque);color:#0d0d0f;
+  box-shadow:0 8px 24px -8px var(--destaque);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px -8px var(--destaque)}
+.btn-ghost{
+  background:transparent;color:var(--texto);
+  border:1px solid var(--borda);
+}
+.btn-ghost:hover{border-color:var(--destaque);color:var(--destaque)}
+
+/* ============================================================
+   SEÇÃO DE BENEFÍCIOS
+============================================================ */
+.beneficios{padding:80px 0;border-top:1px solid var(--borda)}
+.section-title{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(36px,5vw,56px);
+  text-transform:uppercase;letter-spacing:-.5px;
+  margin-bottom:16px;
+}
+.section-sub{color:var(--texto-suave);margin-bottom:48px;max-width:600px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:820px){.grid-3{grid-template-columns:1fr}}
+.card-beneficio{
+  background:var(--bg-2);
+  padding:32px;border-radius:16px;
+  border:1px solid var(--borda);
+  transition:border-color .2s, transform .2s;
+}
+.card-beneficio:hover{border-color:var(--destaque);transform:translateY(-4px)}
+.card-beneficio .icone{
+  width:44px;height:44px;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:10px;background:rgba(245,255,61,.08);
+  color:var(--destaque);
+}
+.card-beneficio .icone svg{width:26px;height:26px}
+.card-beneficio h3{font-size:20px;margin-bottom:8px}
+.card-beneficio p{color:var(--texto-suave);font-size:15px}
+
+/* ============================================================
+   SEÇÃO DE APOSTILAS (Produtos / Cards de venda)
+   ESTA É A PARTE PRINCIPAL — duplique um .card-apostila
+   para adicionar mais produtos
+============================================================ */
+.produtos{padding:80px 0;border-top:1px solid var(--borda);background:linear-gradient(180deg,transparent,rgba(245,255,61,.02))}
+.grid-produtos{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:48px}
+@media(max-width:980px){.grid-produtos{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid-produtos{grid-template-columns:1fr}}
+
+.card-apostila{
+  background:var(--bg-2);
+  border:1px solid var(--borda);
+  border-radius:20px;overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .2s, border-color .2s;
+}
+.card-apostila:hover{transform:translateY(-6px);border-color:var(--destaque)}
+.card-img{
+  aspect-ratio:4/3;
+  background:linear-gradient(135deg,#27272a,#16161a);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Anton',sans-serif;
+  font-size:64px;color:var(--destaque);
+  position:relative;
+}
+.card-img .badge{
+  position:absolute;top:16px;right:16px;
+  background:var(--destaque-2);color:#fff;
+  font-size:11px;padding:4px 10px;border-radius:999px;
+  letter-spacing:1px;text-transform:uppercase;font-weight:700;
+}
+.card-conteudo{padding:24px;display:flex;flex-direction:column;flex:1}
+.card-conteudo h3{
+  font-family:'Anton',sans-serif;
+  font-size:24px;text-transform:uppercase;
+  letter-spacing:.5px;margin-bottom:8px;
+}
+.card-conteudo .desc{color:var(--texto-suave);font-size:14px;margin-bottom:20px;flex:1}
+.card-features{list-style:none;margin-bottom:24px}
+.card-features li{
+  font-size:14px;padding:6px 0;color:var(--texto-suave);
+  display:flex;align-items:flex-start;gap:8px;
+}
+.card-features li svg{
+  width:16px;height:16px;flex-shrink:0;margin-top:4px;color:var(--destaque);
+}
+.card-preco{
+  display:flex;align-items:baseline;gap:8px;
+  margin-bottom:20px;
+}
+.preco-antigo{text-decoration:line-through;color:var(--texto-suave);font-size:14px}
+.preco-atual{font-family:'Anton',sans-serif;font-size:36px;color:var(--destaque)}
+.card-apostila .btn{width:100%;text-align:center}
+
+/* ============================================================
+   CTA FINAL
+============================================================ */
+.cta-final{
+  padding:100px 0;text-align:center;
+  border-top:1px solid var(--borda);
+  background:radial-gradient(circle at center, rgba(245,255,61,.08), transparent 60%);
+}
+.cta-final h2{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(40px,6vw,72px);
+  text-transform:uppercase;line-height:1;
+  margin-bottom:20px;
+}
+.cta-final p{color:var(--texto-suave);margin-bottom:32px;font-size:18px}
+
+/* ============================================================
+   RODAPÉ
+============================================================ */
+footer{
+  border-top:1px solid var(--borda);
+  padding:32px 0;text-align:center;
+  color:var(--texto-suave);font-size:13px;
+}
+
+/* ============================================================
+   ANIMAÇÃO DE ENTRADA (fade-in suave ao rolar)
+============================================================ */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .8s, transform .8s}
+.fade-in.visivel{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     ÍCONES SVG REUTILIZÁVEIS (definidos uma vez, usados várias)
+     Para trocar um ícone, edite o <symbol> correspondente.
+============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Halter (treinos estruturados) -->
+  <symbol id="i-halter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 6v12M3 9v6M18 6v12M21 9v6M6 12h12"/>
+  </symbol>
+  <!-- Celular (acesso imediato) -->
+  <symbol id="i-celular" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="6" y="2" width="12" height="20" rx="2"/>
+    <path d="M11 18h2"/>
+  </symbol>
+  <!-- Alvo (resultados) -->
+  <symbol id="i-alvo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/>
+    <circle cx="12" cy="12" r="5"/>
+    <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+  </symbol>
+  <!-- Check (lista de features) -->
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 12l5 5L20 6"/>
+  </symbol>
+</svg>
+
+<!-- ============================================================
+     CABEÇALHO — altere o nome da marca aqui
+============================================================ -->
+<header>
+  <div class="container nav">
+    <div class="logo">FORJA<span>.</span>FIT</div>
+    <ul>
+      <li><a href="#apostilas">Apostilas</a></li>
+      <li><a href="#beneficios">Benefícios</a></li>
+      <li><a href="#apostilas">Comprar</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- ============================================================
+     SEÇÃO HERO (Topo)
+============================================================ -->
+<section class="hero">
+  <div class="container">
+    <span class="hero-tag">Treinos profissionais para você</span>
+    <h1>Construa o corpo<br/>que <em>você merece</em>.</h1>
+    <p>Apostilas de treino criadas por especialistas para hipertrofia, emagrecimento e ganho de força. Resultados reais, sem enrolação.</p>
+    <div class="hero-cta">
+      <a href="#apostilas" class="btn btn-primary">Ver Apostilas</a>
+      <a href="#beneficios" class="btn btn-ghost">Como Funciona</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SEÇÃO BENEFÍCIOS — duplique um .card-beneficio para adicionar
+============================================================ -->
+<section class="beneficios" id="beneficios">
+  <div class="container">
+    <h2 class="section-title">Por que escolher<br/>nossas apostilas?</h2>
+    <p class="section-sub">Tudo que você precisa para treinar com método e ver resultado de verdade.</p>
+
+    <div class="grid-3">
+      <div class="card-beneficio">
+        <div class="icone"><svg><use href="#i-halter"/></svg></div>
+        <h3>Treinos Estruturados</h3>
+        <p>Divisão semanal completa, séries, repetições e tempo de descanso definidos.</p>
+      </div>
+      <div class="card-beneficio">
+        <div class="icone"><svg><use href="#i-celular"/></svg></div>
+        <h3>Acesso Imediato</h3>
+        <p>Receba o PDF no seu e-mail logo após a compra. Use no celular ou imprima.</p>
+      </div>
+      <div class="card-beneficio">
+        <div class="icone"><svg><use href="#i-alvo"/></svg></div>
+        <h3>Método Validado</h3>
+        <p>Programas baseados em ciência e na experiência prática de academia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SEÇÃO DE APOSTILAS / PRODUTOS
+     AQUI VOCÊ COLOCA OS LINKS DO KIWIFY
+     - Procure por LINK_KIWIFY_X e troque pela URL do seu produto
+     - Para adicionar uma nova apostila, copie um bloco
+       <article class="card-apostila">...</article> inteiro
+============================================================ -->
+<section class="produtos" id="apostilas">
+  <div class="container">
+    <h2 class="section-title">Apostilas disponíveis</h2>
+    <p class="section-sub">Escolha o objetivo e comece hoje. Pagamento seguro pela Kiwify.</p>
+
+    <div class="grid-produtos">
+
+      <!-- =========== APOSTILA 1 — HIPERTROFIA =========== -->
+      <article class="card-apostila">
+        <div class="card-img">
+          HIPER
+          <span class="badge">Mais vendida</span>
+        </div>
+        <div class="card-conteudo">
+          <h3>Hipertrofia Total</h3>
+          <p class="desc">Programa de 12 semanas focado em ganho de massa muscular para iniciantes e intermediários.</p>
+          <ul class="card-features">
+            <li><svg><use href="#i-check"/></svg>Treino ABCDE detalhado</li>
+            <li><svg><use href="#i-check"/></svg>Guia de execução de exercícios</li>
+            <li><svg><use href="#i-check"/></svg>Plano alimentar bônus</li>
+          </ul>
+          <div class="card-preco">
+            <span class="preco-antigo">R$ 97</span>
+            <span class="preco-atual">R$ 47</span>
+          </div>
+          <!-- TROQUE O LINK ABAIXO PELO SEU LINK DO KIWIFY -->
+          <a href="https://pay.kiwify.com.br/LINK_KIWIFY_1" target="_blank" rel="noopener" class="btn btn-primary">
+            Comprar Agora
+          </a>
+        </div>
+      </article>
+
+      <!-- =========== APOSTILA 2 — CUTTING =========== -->
+      <article class="card-apostila">
+        <div class="card-img">
+          CUT
+        </div>
+        <div class="card-conteudo">
+          <h3>Queima de Gordura</h3>
+          <p class="desc">Treino HIIT + musculação para definição muscular em 8 semanas.</p>
+          <ul class="card-features">
+            <li><svg><use href="#i-check"/></svg>Cardio estratégico</li>
+            <li><svg><use href="#i-check"/></svg>Treinos de 45min</li>
+            <li><svg><use href="#i-check"/></svg>Cronograma semanal</li>
+          </ul>
+          <div class="card-preco">
+            <span class="preco-antigo">R$ 87</span>
+            <span class="preco-atual">R$ 39</span>
+          </div>
+          <a href="https://pay.kiwify.com.br/LINK_KIWIFY_2" target="_blank" rel="noopener" class="btn btn-primary">
+            Comprar Agora
+          </a>
+        </div>
+      </article>
+
+      <!-- =========== APOSTILA 3 — FORÇA =========== -->
+      <article class="card-apostila">
+        <div class="card-img">
+          PWR
+          <span class="badge">Novo</span>
+        </div>
+        <div class="card-conteudo">
+          <h3>Força Bruta</h3>
+          <p class="desc">Programa avançado de força para quem já treina e quer subir cargas.</p>
+          <ul class="card-features">
+            <li><svg><use href="#i-check"/></svg>Periodização linear</li>
+            <li><svg><use href="#i-check"/></svg>Foco em supino, agachamento e levantamento</li>
+            <li><svg><use href="#i-check"/></svg>Planilha de progressão</li>
+          </ul>
+          <div class="card-preco">
+            <span class="preco-antigo">R$ 127</span>
+            <span class="preco-atual">R$ 67</span>
+          </div>
+          <a href="https://pay.kiwify.com.br/LINK_KIWIFY_3" target="_blank" rel="noopener" class="btn btn-primary">
+            Comprar Agora
+          </a>
+        </div>
+      </article>
+
+      <!-- =========== APOSTILA 4 — FEMININO =========== -->
+      <article class="card-apostila">
+        <div class="card-img">
+          FEM
+        </div>
+        <div class="card-conteudo">
+          <h3>Treino Feminino</h3>
+          <p class="desc">Programa completo de glúteos, pernas e core para mulheres em qualquer nível.</p>
+          <ul class="card-features">
+            <li><svg><use href="#i-check"/></svg>Foco em glúteos e posterior</li>
+            <li><svg><use href="#i-check"/></svg>3 níveis: iniciante, intermediário e avançado</li>
+            <li><svg><use href="#i-check"/></svg>Treino em casa e na academia</li>
+          </ul>
+          <div class="card-preco">
+            <span class="preco-antigo">R$ 97</span>
+            <span class="preco-atual">R$ 49</span>
+          </div>
+          <a href="https://pay.kiwify.com.br/LINK_KIWIFY_4" target="_blank" rel="noopener" class="btn btn-primary">
+            Comprar Agora
+          </a>
+        </div>
+      </article>
+
+      <!-- =========== APOSTILA 5 — INICIANTE =========== -->
+      <article class="card-apostila">
+        <div class="card-img">
+          START
+          <span class="badge">Recomendada</span>
+        </div>
+        <div class="card-conteudo">
+          <h3>Iniciante na Academia</h3>
+          <p class="desc">Do zero ao treino completo em 8 semanas. Aprenda a executar todos os exercícios básicos.</p>
+          <ul class="card-features">
+            <li><svg><use href="#i-check"/></svg>Treino ABC simplificado</li>
+            <li><svg><use href="#i-check"/></svg>Vídeos demonstrativos</li>
+            <li><svg><use href="#i-check"/></svg>Tira-dúvidas sobre máquinas</li>
+          </ul>
+          <div class="card-preco">
+            <span class="preco-antigo">R$ 77</span>
+            <span class="preco-atual">R$ 29</span>
+          </div>
+          <a href="https://pay.kiwify.com.br/LINK_KIWIFY_5" target="_blank" rel="noopener" class="btn btn-primary">
+            Comprar Agora
+          </a>
+        </div>
+      </article>
+
+      <!-- =========== APOSTILA 6 — TREINO EM CASA =========== -->
+      <article class="card-apostila">
+        <div class="card-img">
+          HOME
+        </div>
+        <div class="card-conteudo">
+          <h3>Treino em Casa</h3>
+          <p class="desc">Programa de 6 semanas usando peso corporal e elásticos. Sem precisar de academia.</p>
+          <ul class="card-features">
+            <li><svg><use href="#i-check"/></svg>Treinos de 30 min</li>
+            <li><svg><use href="#i-check"/></svg>Sem equipamentos</li>
+            <li><svg><use href="#i-check"/></svg>Ideal para rotina corrida</li>
+          </ul>
+          <div class="card-preco">
+            <span class="preco-antigo">R$ 67</span>
+            <span class="preco-atual">R$ 27</span>
+          </div>
+          <a href="https://pay.kiwify.com.br/LINK_KIWIFY_6" target="_blank" rel="noopener" class="btn btn-primary">
+            Comprar Agora
+          </a>
+        </div>
+      </article>
+
+      <!-- =========== APOSTILA 7 — COMBO =========== -->
+      <article class="card-apostila">
+        <div class="card-img">
+          PRO
+          <span class="badge">Combo</span>
+        </div>
+        <div class="card-conteudo">
+          <h3>Combo Completo</h3>
+          <p class="desc">Todas as apostilas em um único pacote. O melhor custo-benefício para evoluir o ano todo.</p>
+          <ul class="card-features">
+            <li><svg><use href="#i-check"/></svg>Todas as 6 apostilas</li>
+            <li><svg><use href="#i-check"/></svg>Bônus exclusivos</li>
+            <li><svg><use href="#i-check"/></svg>Atualizações gratuitas</li>
+          </ul>
+          <div class="card-preco">
+            <span class="preco-antigo">R$ 397</span>
+            <span class="preco-atual">R$ 147</span>
+          </div>
+          <a href="https://pay.kiwify.com.br/LINK_KIWIFY_7" target="_blank" rel="noopener" class="btn btn-primary">
+            Comprar Agora
+          </a>
+        </div>
+      </article>
+
+      <!-- PARA ADICIONAR MAIS APOSTILAS, COPIE UM BLOCO ACIMA E COLE AQUI -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA FINAL — chamada para ação no final do site
+============================================================ -->
+<section class="cta-final">
+  <div class="container">
+    <h2>Sua melhor versão<br/>começa hoje.</h2>
+    <p>Escolha sua apostila e dê o primeiro passo.</p>
+    <a href="#apostilas" class="btn btn-primary">Quero Começar Agora</a>
+  </div>
+</section>
+
+<!-- ============================================================
+     RODAPÉ — altere o ano, nome e contatos
+============================================================ -->
+<footer>
+  <div class="container">
+    © 2025 FORJA.FIT — Todos os direitos reservados. <br/>
+    Contato: contato@seuemail.com
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPT — animação de fade-in ao rolar
+============================================================ -->
+<script>
+  document.querySelectorAll('.card-beneficio, .card-apostila, .section-title')
+    .forEach(el => el.classList.add('fade-in'));
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visivel');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
